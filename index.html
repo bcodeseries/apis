@@ -11,7 +11,7 @@
      <img id="thumbnail" />
    </div>
 
-  <div class="icons">
+  <div class="icosns">
     <div class="profile">
       <img src="./images/profile.png" />
       <div id="profiletext"> </div>
@@ -39,6 +39,31 @@
 
 
    <script>
+
+    fetch("https://randomuser.me/api/?results=1")
+    .then(res => res.json())
+    .then(json => createElement(json.results))
+
+    function createElement(data) {
+      console.log(data)
+       data.map((user) => {
+         let name = user.name.first.charAt(0).toUpperCase() + user.name.first.slice(1) + " " + user.name.last.charAt(0).toUpperCase() + user.name.first.slice(1);
+         let thumbnail = user.picture.thumbnail
+         let profilenode = document.getElementById("profiletext")
+         let picture = document.getElementById("thumbnail")
+
+         profilenode.append(name)
+
+         picture.src = thumbnail
+
+         console.log(thumbnail)
+       }
+      )
+    };
+
+
+
+   console.log(name)
 
    </script>
   </body>
