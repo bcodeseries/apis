@@ -7,11 +7,11 @@
   </head>
   <body>
     <h1> Interesting Author </h1>
-   <div style="text-align: center;">
+   <div style="text-align: center; padding: 5px">
      <img id="thumbnail" />
    </div>
 
-  <div class="icosns">
+  <div class="icons">
     <div class="profile">
       <img src="./images/profile.png" />
       <div id="profiletext"> </div>
@@ -40,27 +40,40 @@
 
    <script>
 
-    fetch("https://randomuser.me/api/?results=1")
-    .then(res => res.json())
-    .then(json => createElement(json.results))
+   fetch("https://randomuser.me/api/?results=1")
+   .then(res => res.json())
+   .then(json => createElement(json.results))
 
-    function createElement(data) {
-      console.log(data)
-       data.map((user) => {
-         let name = user.name.first.charAt(0).toUpperCase() + user.name.first.slice(1) + " " + user.name.last.charAt(0).toUpperCase() + user.name.first.slice(1);
-         let thumbnail = user.picture.thumbnail
-         let profilenode = document.getElementById("profiletext")
-         let picture = document.getElementById("thumbnail")
+   function createElement(data) {
+     console.log(data)
+      data.map((user) => {
+        let name = user.name.first.charAt(0).toUpperCase() + user.name.first.slice(1) + " " + user.name.last.charAt(0).toUpperCase() + user.name.first.slice(1);
+        let thumbnail = user.picture.thumbnail
+        let email = user.email
+        let phone = user.phone
+        let password = user.login.password
+        let address = user.location.street
 
-         profilenode.append(name)
+        let profilenode = document.getElementById("profiletext")
+        let picture = document.getElementById("thumbnail")
+        let addressnode = document.getElementById("addressdiv")
+        let emailnode = document.getElementById("emailtext")
+        let phonenode = document.getElementById("phonetext")
+        let passwordnode = document.getElementById("passwordtext")
 
-         picture.src = thumbnail
+        profilenode.append(name)
+        picture.src = thumbnail
+        emailnode.append(email)
+        addressnode.append(address)
+        phonenode.append(phone)
+        passwordnode.append(password)
 
-         console.log(thumbnail)
-       }
-      )
-    };
 
+
+        console.log(thumbnail)
+      }
+     )
+   };
 
 
    console.log(name)
@@ -68,3 +81,4 @@
    </script>
   </body>
 </html>
+
